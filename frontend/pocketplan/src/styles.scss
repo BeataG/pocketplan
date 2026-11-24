@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --color-background: #101512;
+  --color-surface: #171e19;
+  --color-surface-raised: #202923;
+  --color-text: #edf4ee;
+  --color-text-muted: #a2afa5;
+  --color-border: #2c3930;
+  --color-accent: #83c99b;
+  --color-accent-strong: #a1dfb3;
+  --color-accent-contrast: #102016;
+  --color-focus: #b7e8c5;
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --color-background: #f4f7f4;
+  --color-surface: #ffffff;
+  --color-surface-raised: #edf3ee;
+  --color-text: #17231b;
+  --color-text-muted: #617066;
+  --color-border: #dce6de;
+  --color-accent: #267748;
+  --color-accent-strong: #1e623a;
+  --color-accent-contrast: #ffffff;
+  --color-focus: #267748;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}

@@ -1,0 +1,80 @@
+<div class="app-shell">
+  <header class="mobile-header">
+    <a class="mobile-brand" routerLink="/" (click)="closeMenu()">PocketPlan</a>
+    <button
+      class="menu-toggle"
+      type="button"
+      aria-controls="primary-navigation"
+      [attr.aria-expanded]="menuOpen()"
+      [attr.aria-label]="menuOpen() ? 'Close navigation menu' : 'Open navigation menu'"
+      (click)="toggleMenu()"
+    >
+      <span aria-hidden="true">{{ menuOpen() ? '×' : '☰' }}</span>
+    </button>
+  </header>
+
+  @if (menuOpen()) {
+    <button
+      class="drawer-backdrop"
+      type="button"
+      aria-label="Close navigation menu"
+      (click)="closeMenu()"
+    ></button>
+  }
+
+  <aside class="sidebar" [class.sidebar--open]="menuOpen()">
+    <div class="brand-row">
+      <a class="brand" routerLink="/" (click)="closeMenu()" aria-label="PocketPlan home">
+        <span class="brand-mark" aria-hidden="true">P</span>
+        <span>PocketPlan</span>
+      </a>
+      <button class="drawer-close" type="button" aria-label="Close navigation menu" (click)="closeMenu()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <nav id="primary-navigation" class="primary-navigation" aria-label="Main navigation">
+      <span class="navigation-label">Workspace</span>
+      <a routerLink="/" routerLinkActive="navigation-link--active" [routerLinkActiveOptions]="{ exact: true }" class="navigation-link" (click)="closeMenu()">
+        <span class="navigation-icon" aria-hidden="true">⌂</span>
+        <span>Dashboard</span>
+      </a>
+      <a routerLink="/transactions" routerLinkActive="navigation-link--active" class="navigation-link" (click)="closeMenu()">
+        <span class="navigation-icon" aria-hidden="true">↕</span>
+        <span>Transactions</span>
+      </a>
+      <a routerLink="/budgets" routerLinkActive="navigation-link--active" class="navigation-link" (click)="closeMenu()">
+        <span class="navigation-icon" aria-hidden="true">▤</span>
+        <span>Budgets</span>
+      </a>
+      <a routerLink="/categories" routerLinkActive="navigation-link--active" class="navigation-link" (click)="closeMenu()">
+        <span class="navigation-icon" aria-hidden="true">◇</span>
+        <span>Categories</span>
+      </a>
+      <a routerLink="/savings-goals" routerLinkActive="navigation-link--active" class="navigation-link" (click)="closeMenu()">
+        <span class="navigation-icon" aria-hidden="true">◎</span>
+        <span>Savings Goals</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button
+        class="theme-toggle"
+        type="button"
+        [attr.aria-label]="themeService.theme() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+        (click)="themeService.toggleTheme()"
+      >
+        <span class="theme-icon" aria-hidden="true">{{ themeService.theme() === 'dark' ? '☼' : '☾' }}</span>
+        <span>{{ themeService.theme() === 'dark' ? 'Light mode' : 'Dark mode' }}</span>
+      </button>
+      <div class="profile-row">
+        <span class="profile-avatar" aria-hidden="true">P</span>
+        <span class="profile-copy"><strong>Personal space</strong><span>PLN account</span></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content" id="main-content">
+    <router-outlet />
+  </main>
+</div>
